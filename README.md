@@ -660,5 +660,5 @@ Upload the jar from `target/` to the Elastic Beanstalk Java environment, then co
   - Training Requests — 14 endpoints
   - Payments — 13 endpoints
   - Awareness Calendar — 9 endpoints
-  - AI Assistants — 4 endpoints: admin weekly summary, provider weekly summary, beneficiary weekly summary, internal announcements (excluding session preparation)
+  - AI Assistants — 4 endpoints: admin weekly summary, provider weekly summary, beneficiary weekly summary, internal announcements
 - **Pages** — login, register, beneficiary/provider registration, calendar, and admin/beneficiary/provider dashboards.
