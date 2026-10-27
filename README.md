@@ -10,8 +10,9 @@ A B2B platform connecting training providers with organizations and beneficiarie
 ![Thymeleaf](https://img.shields.io/badge/Thymeleaf-005F0F?style=flat-square&logo=thymeleaf&logoColor=white)
 ![JWT](https://img.shields.io/badge/Auth-JWT-000000?style=flat-square&logo=jsonwebtokens&logoColor=white)
 ![Gemini](https://img.shields.io/badge/Google_Gemini-AI-8E75B2?style=flat-square&logo=googlegemini&logoColor=white)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-AWS-FF9900?style=flat-square&logo=amazonaws&logoColor=white)](http://waei-platform-env.eba-zgnky3i6.eu-north-1.elasticbeanstalk.com/)
 
-[Overview](#overview) · [Tech Stack](#tech-stack) · [Domain Model](#domain-model) · [API Reference](#api-reference) · [Project Structure](#project-structure) · [Getting Started](#getting-started) · [Integrations](#integrations)
+[Overview](#overview) · [Tech Stack](#tech-stack) · [Domain Model](#domain-model) · [API Reference](#api-reference) · [Project Structure](#project-structure) · [Getting Started](#getting-started) · [Deployment](#deployment) · [Integrations](#integrations)
 
 ## Resources
 
@@ -615,6 +616,22 @@ Windows: use `mvnw.cmd`. The app starts at `http://localhost:8080`.
 | `WAEI_REMINDER_API_KEY` | Reminders | Shared key for the reminder endpoint |
 | `PORT`, `CORS_ORIGINS`, `UPLOAD_DIR`, `PROGRAM_IMAGE_DIR` | No | Server port, CORS, upload paths |
 
+## Deployment
+
+**Live:** http://waei-platform-env.eba-zgnky3i6.eu-north-1.elasticbeanstalk.com/
+
+Deployed on **AWS Elastic Beanstalk** in `eu-north-1` (Stockholm).
+
+```bash
+./mvnw clean package
+```
+
+Upload the jar from `target/` to the Elastic Beanstalk Java environment, then configure the environment properties listed in [Getting Started](#getting-started). The app reads `PORT` and falls back to `8080`, matching the Elastic Beanstalk proxy.
+
+- Point `DB_URL` at a managed MySQL instance (for example, Amazon RDS).
+- `uploads/` is ephemeral on Elastic Beanstalk — set `UPLOAD_DIR` and `PROGRAM_IMAGE_DIR` to persistent storage or S3.
+- Health check: `/` or `/login` (both public).
+
 ## Integrations
 
 | Service | Used for | Reference |
@@ -626,3 +643,22 @@ Windows: use `mvnw.cmd`. The app starts at `http://localhost:8080`.
 | SMTP | Transactional email | `spring.mail.*` |
 | n8n | 24-hour training reminders | [`n8n/training-reminders.json`](n8n/training-reminders.json) |
 | Kids illustrations | Asset prompts and naming | [`docs/kids-illustrations.md`](docs/kids-illustrations.md) |
+
+## My Contribution
+
+> Team Project - I served as Team Lead, overseeing the team while contributing the features listed below
+
+- **Documentation** — README and the combined UML domain model.
+- **Security** — JWT authentication, token claims, and role-based access control.
+- **Moyasar integration** — invoices, webhook, refunds, and payment sync.
+- **Zoom API integration** — automatic meeting creation and host links.
+- **AWS deployment** — Elastic Beanstalk environment and configuration.
+- **Models** — `TrainingProgram`, `TrainingRequest`, `AwarenessCalendarEvent`, `Payment`.
+- **APIs**
+  - Auth — 2 endpoints
+  - Training Programs — 13 endpoints
+  - Training Requests — 14 endpoints
+  - Payments — 13 endpoints
+  - Awareness Calendar — 9 endpoints
+  - AI Assistants — 4 endpoints: admin weekly summary, provider weekly summary, beneficiary weekly summary, internal announcements (excluding session preparation)
+- **Pages** — login, register, beneficiary/provider registration, calendar, and admin/beneficiary/provider dashboards.
