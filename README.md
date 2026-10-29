@@ -53,6 +53,7 @@ A B2B platform connecting training providers with organizations and beneficiarie
 | Meetings | Zoom API — automatic meeting creation for accepted requests |
 | Messaging | UltraMsg (WhatsApp) and Spring Mail (SMTP) |
 | Automation | n8n — 24-hour training reminders |
+| Deployment | AWS — Elastic Beanstalk (`eu-north-1`, Stockholm) for the app, Amazon RDS MySQL 8 for the database |
 | Frontend | Thymeleaf templates with vanilla CSS/JS |
 | Build | Maven Wrapper |
 | Tests | JUnit 5, Spring Boot Test, MockMvc |
